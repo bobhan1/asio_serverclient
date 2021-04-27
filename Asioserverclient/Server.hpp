@@ -28,7 +28,7 @@ public:
 			}
 			m_handlers.insert(std::make_pair(handler->getconnid(), handler));
 			std::cout << "current connect count :" << m_handlers.size() << std::endl;
-			handler->handleRead();
+			handler->handleread();
 			accept();
 		});
 	}
@@ -53,6 +53,7 @@ private:
 		p->setcallerror([this](int id) {
 			recycleid(id);
 		});
+		return p;
 	}
 	void recycleid(int id){
 		auto it = find(pool.begin(),pool.end(),id);

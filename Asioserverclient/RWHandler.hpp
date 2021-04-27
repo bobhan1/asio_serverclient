@@ -14,7 +14,7 @@ class RWHandler :public std::enable_shared_from_this<RWHandler> {
 public:
 	RWHandler(io_service& ios) :m_sock(ios) {}
 	~RWHandler() {}
-	void handleRead() {
+	void handleread() {
 		auto self = shared_from_this();
 		async_read(m_sock, buffer(m_readmsg.data(), HEAD_LEN), 
 			[this, self](const boost::system::error_code& ec, size_t sz) {
@@ -23,7 +23,7 @@ public:
 				return;
 			}
 			readBody();
-		}
+			}
 		);
 	}
 	void readBody() {
@@ -36,7 +36,7 @@ public:
 			}
 			callback(m_readmsg.data(), m_readmsg.length());
 
-			handleRead();
+			handleread();
 		}
 		);
 	}
@@ -63,7 +63,7 @@ public:
 	}
 	tcp::socket& getsocket() { return m_sock; }
 	void callback(char* pdata, size_t l) {
-		std::cout << pdata + HEAD_LEN << std::endl;
+		std::cout << pdata << std::endl;
 	}
 
 

@@ -10,7 +10,7 @@ public:
 	char* data() { return data_; }
 	size_t length()const { return header_length + body_length_; }
 	const char* body()const { return data_ + header_length; }
-	char* bosy() { return data_ + header_length; }
+	char* body() { return data_ + header_length; }
 	size_t body_length()const { return body_length_; }
 	void body_length(size_t new_length) {
 		body_length_ = std::min<size_t>(new_length, max_body_lenght);
